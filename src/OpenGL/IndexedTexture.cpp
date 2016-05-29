@@ -64,6 +64,12 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     IndexedTexture::~IndexedTexture()
     {
+        // Disposes of all OpenGL objects used by this class instance
+        glCheck(m_Functions->glDeleteTextures(1, &m_PaletteID));
+        glCheck(m_Functions->glDeleteTextures(1, &m_TextureID));
+        glCheck(m_Functions->glDeleteBuffers(1, &m_VertexBuffer));
+        glCheck(m_Functions->glDeleteBuffers(1, &m_IndexBuffer));
+
         // Frees the pixel and color data
         delete m_Colors;
         delete m_Pixels;
