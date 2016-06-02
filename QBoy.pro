@@ -11,17 +11,17 @@
 QT         += core opengl
 TARGET      = QBoy
 TEMPLATE    = lib
-COsNFIG     += c++11
+CONFIG     += c++11
 DEFINES    += QBOY_LIBRARY
 
 #
 # QMake Settings, 2
 #
 VERSION = 1.0
-QMAKE_TARGET_COMPANY = Pokedude
-QMAKE_TARGET_PRODUCT = QBoy
-QMAKE_TARGET_DESCRIPTION = Handles GBA ROMs and their data
-QMAKE_TARGET_COPYRIGHT = (C) 2015-2016 Pokedude
+win:QMAKE_TARGET_COMPANY     = Pokedude
+win:QMAKE_TARGET_PRODUCT     = QBoy
+win:QMAKE_TARGET_DESCRIPTION = Handles GBA ROMs and their data
+win:QMAKE_TARGET_COPYRIGHT   = (C) 2015-2016 Pokedude
 
 #
 # QMake Settings, 3
@@ -66,9 +66,15 @@ SOURCES += \
 #
 # Platform-specific settings
 #
-unix {
+unix
+{
     target.path = /usr/lib
     INSTALLS += target
+    TARGET_EXT = .so
+}
+win
+{
+    TARGET_EXT = .dll
 }
 
 DISTFILES +=
