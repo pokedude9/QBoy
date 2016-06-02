@@ -123,7 +123,23 @@ namespace qboy
         bool setRaw(const QVector<Color> &raw);
 
 
-        // TODO: write
+        ///////////////////////////////////////////////////////////
+        /// \brief Determines whether repointing is required.
+        /// \param isCompressed Is the image to be written LZ77?
+        /// \returns true if the image must be repointed
+        ///
+        ///////////////////////////////////////////////////////////
+        bool requiresRepoint(bool isCompressed);
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Writes the palette to the given offset.
+        /// \param rom Currently opened ROM file
+        /// \param offset Offset to write palette to
+        /// \param lz77 Should palette be LZ77-encoded?
+        /// \returns false if an error occured.
+        ///
+        ///////////////////////////////////////////////////////////
+        bool write(Rom &rom, UInt32 offset, Boolean lz77 = false);
 
 
     protected:
@@ -134,6 +150,13 @@ namespace qboy
         ///
         ///////////////////////////////////////////////////////////
         bool convertGBA(const QList<UInt16> &entries);
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Converts the raw RGBA data to GBA color data.
+        /// \returns the encoded byte array of the data.
+        ///
+        ///////////////////////////////////////////////////////////
+        void convertRaw();
 
 
     private:
@@ -147,6 +170,7 @@ namespace qboy
         Int32               m_DataSize;
         Int32               m_ColorCount;
         QString             m_LastError;
+        QByteArray          m_Buffer;
    };
 }
 

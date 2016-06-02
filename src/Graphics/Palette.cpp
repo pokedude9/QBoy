@@ -148,6 +148,24 @@ namespace qboy
         return true;
     }
 
+    ///////////////////////////////////////////////////////////
+    void Palette::convertRaw()
+    {
+        // Buffers the converted data
+        for (int i = 0; i < m_ColorCount; i++)
+        {
+            const Color &entry = m_Data.at(i);
+            char red = (char)(floorf(entry.r / 8.0f));
+            char grn = (char)(floorf(entry.g / 8.0f));
+            char blu = (char)(floorf(entry.b / 8.0f));
+
+            // Converts the entry to a GBA color
+            Int16 color = (Int16)(red | (grn << 5) | (blu << 10));
+            m_Buffer.append((char)((color & 0xFF00) >> 8));
+            m_Buffer.append((char)(color & 0xFF));
+        }
+    }
+
 
     ///////////////////////////////////////////////////////////
     const QVector<Color> &Palette::raw() const
@@ -182,11 +200,71 @@ namespace qboy
         // Copies the new color list
         m_Data = raw;
         m_DataGL.clear();
+        m_ColorCount = raw.size();
 
 
         // Converts to OpenGL data list
         foreach (Color color, raw)
             m_DataGL.push_back({ color.r/255.0f, color.g/255.0f, color.b/255.0f, 1.0f });
+
+        // Expands the palette to 256 colors, if not already
+        if (m_ColorCount == 16)
+        {
+            for (int i = 0; i < 240; i++)
+            {
+                m_Data.append({ 0, 0, 0, 0 });
+                m_DataGL.append({ 0, 0, 0, 0 });
+            }
+        }
+
+        return true;
+    }
+
+
+    ///////////////////////////////////////////////////////////
+    bool Palette::requiresRepoint(bool isCompressed)
+    {
+        // Converts the palette to raw byte data
+        convertRaw();
+
+        // Retrieves the new data size
+        int newSize = 0;
+        if (isCompressed)
+            newSize = Lz77::compress(m_Buffer).size();
+        else
+            newSize = m_Buffer.size();
+
+        return newSize > m_DataSize;
+    }
+
+    ///////////////////////////////////////////////////////////
+    bool Palette::write(Rom &rom, UInt32 offset, Boolean lz77)
+    {
+        // Converts to raw data, if not already
+        if (m_Buffer.isEmpty() || m_Buffer.isNull())
+            convertRaw();
+
+        // Converts the raw data to LZ77 data, if requested
+        if (lz77)
+        {
+            m_Buffer = Lz77::compress(m_Buffer);
+
+            if (m_Buffer.isNull() || m_Buffer.isEmpty())
+            {
+                m_LastError = PAL_ERROR_LZ77;
+                return false;
+            }
+        }
+        if (!rom.seek(offset))
+        {
+            m_LastError = PAL_ERROR_OFFSET;
+            return false;
+        }
+
+
+        // Writes the palette to the ROM and clears the buffer
+        rom.writeBytes(m_Buffer);
+        m_Buffer.clear();
 
         return true;
     }

@@ -69,7 +69,7 @@ namespace qboy
         /// \returns the compressed LZ77 data.
         ///
         ///////////////////////////////////////////////////////////
-        //static QByteArray compress(const QByteArray &raw);
+        static QByteArray compress(const QByteArray &raw);
     };
 }
 

@@ -86,4 +86,97 @@ namespace qboy
         size[0] = (array - start);
         return decomp;
     }
+
+    ///////////////////////////////////////////////////////////
+    int *attempt_encode(Int8 *ptr, int pos, int len) // always 2 entries
+    {
+        // Checks whether the following data can be encoded
+        if (pos >= len)
+            return new int[2] { -1, 0 };
+        if ((pos < 2) || (len-pos) < 2)
+            return new int[2] { 0, 0 };
+
+        // Encodes the block
+        QList<int> l_pos;
+        for (int i = 1; (i < 4096) && (i < pos); i++)
+            if (ptr[pos-(i+1)] == ptr[pos])
+               l_pos.append(i+1);
+
+        if (l_pos.size() == 0)
+            return new int[2] { 0, 0 };
+
+
+       int count = 0;
+       bool islz = true;
+       while (count++ < 18 && islz)
+       {
+           for (int i = l_pos.size()-1; i >= 0; i--)
+           {
+               if (ptr[pos+count] != ptr[(pos-l_pos[i])+(count%l_pos[i])])
+                   l_pos.removeAt(i);
+               else
+                   islz = false;
+           }
+       }
+
+       return new int[2] { count, l_pos[0] };
+    }
+
+    ///////////////////////////////////////////////////////////
+    QByteArray Lz77::compress(const QByteArray &raw)
+    {
+        QByteArray encoded;
+        encoded.append(0x10);
+        int position = 0;
+        int size = raw.size();
+
+        // Computes the data length
+        Int8 *pSize = (Int8*)(&size);
+        encoded.append(*pSize++);
+        encoded.append(*pSize++);
+        encoded.append(*pSize++);
+
+
+        // Encodes the data in blocks
+        while (position < size)
+        {
+            QByteArray block;
+            Int8 bEnc = 0;
+
+            for (int j = 0; j < 8; j++)
+            {
+                int *row = attempt_encode(raw.data(), position, size);
+                if (row[0] > 2)
+                {
+                    // Can be Lz77 encoded
+                    Int8 lo = (Int8)((((row[0]-3)&0xF)<<4)+(((row[1]-1)>>8)&0xF));
+                    Int8 hi = (Int8)((row[1]-1)&0xFF);
+
+                    block.append(lo);
+                    block.append(hi);
+                    position += row[0];
+                    bEnc |= (Int8)(1 << (8-(j+1)));
+                }
+                else if (row[0] >= 0)
+                {
+                    // Can not be encoded; raw data
+                    block.append(array[position++]);
+                }
+                else
+                {
+                    // No data to proceed
+                    break;
+                }
+            }
+
+            encoded.append(bEnc);
+            encoded.append(block);
+        }
+
+        // Aligns the Lz77 data length to four
+        while (encoded.size() % 4 != 0)
+            encoded.append(0);
+
+        return encoded;
+    }
 }

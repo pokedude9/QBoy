@@ -89,7 +89,7 @@ namespace qboy
         file.close();
 
 
-        // Makes sure that the rom has the correct
+        // Makes sure that the rom has the correct size
         if (m_Reference.size() != 16777216 && m_Reference.size() != 33554432)
         {
             m_Error = ROM_ERROR_SIZE;
@@ -101,7 +101,7 @@ namespace qboy
         m_Array  = reinterpret_cast<UInt8*>(m_Reference.data());
 
         // Retrieves the rom title and version (16-byte-string)
-        m_Offset = 0xA0; // offset of the rom header
+        m_Offset = 0xA0; // offset of the identifier
         m_Info.setCode(QString(readBytes(16)));
 
         // Specifies some information about the rom

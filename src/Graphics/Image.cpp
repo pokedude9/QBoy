@@ -37,7 +37,10 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     Image::Image()
         : m_Palette(0),
-          m_DataSize(0)
+          m_DataSize(0),
+          m_Width(0),
+          m_Height(0),
+          m_Is4Bpp(false)
     {
     }
 
@@ -118,6 +121,7 @@ namespace qboy
         }
 
 
+        m_Is4Bpp = is4bpp;
         return true;
     }
 
@@ -192,6 +196,7 @@ namespace qboy
             m_Width = width;
         }
 
+        m_Is4Bpp = is4bpp;
         return true;
     }
 
@@ -207,6 +212,81 @@ namespace qboy
 
         // Returns the texture; widget and functions must be specified manually
         return tex;
+    }
+
+
+    ///////////////////////////////////////////////////////////
+    bool Image::requiresRepoint(bool isCompressed)
+    {
+        // Converts the image to GBA index data first
+        convertToGBA();
+
+        // Retrieves the new size of the image
+        int newSize = 0;
+        if (isCompressed)
+            newSize = Lz77::compress(m_Buffer).size();
+        else
+            newSize = m_Buffer.size();
+
+
+        return newSize > m_DataSize;
+    }
+
+    ///////////////////////////////////////////////////////////
+    bool Image::write(const Rom &rom, UInt32 offset, Boolean isLz77)
+    {
+        // Converts the image to GBA data, if not already
+        if (m_Buffer.isNull() || m_Buffer.isEmpty())
+            convertToGBA();
+
+        // Compresses the buffer, if requested
+        if (isLz77)
+        {
+            m_Buffer = Lz77::compress(m_Buffer);
+
+            if (m_Buffer.isNull() || m_Buffer.isEmpty())
+            {
+                m_LastError = IMG_ERROR_LZ77;
+                return false;
+            }
+        }
+        if (!rom.seek(offset))
+        {
+            m_LastError = IMG_ERROR_OFFSET;
+            return false;
+        }
+
+
+        // Writes the image to ROM and clears the buffer
+        rom.writeBytes(m_Buffer);
+        m_Buffer.clear();
+
+        return true;
+    }
+
+
+    ///////////////////////////////////////////////////////////
+    // Protected methods
+    //
+    ///////////////////////////////////////////////////////////
+    void Image::convertToGBA()
+    {
+        // Combines two consecutive indices into one byte
+        for (int y = 0; y < m_Height-7; y+=8)
+        {
+            for (int x = 0; x < width-7; x+=8)
+            {
+                for (int y2 = 0; y2 < 8; y2++)
+                {
+                    for (int x2 = 0; x2 < 8; x2+=2)
+                    {
+                        Int8 pixel1 = m_Data[(x+x2+0)+((y+y2)*m_Height)];
+                        Int8 pixel2 = m_Data[(x+x2+1)+((y+y2)*m_Height)];
+                        m_Buffer.push_back((Int8)((pixel2 << 4) | pixel1));
+                    }
+                }
+            }
+        }
     }
 
 

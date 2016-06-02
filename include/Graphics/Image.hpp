@@ -165,6 +165,34 @@ namespace qboy
         void setPalette(Palette *palette);
 
 
+        ///////////////////////////////////////////////////////////
+        /// \brief Determines whether the image requires a repoint.
+        /// \param isCompressed Should image be LZ77-compressed?
+        ///
+        ///////////////////////////////////////////////////////////
+        bool requiresRepoint(bool isCompressed);
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Writes the image to ROM.
+        /// \param rom Currently opened ROM file
+        /// \param offset Offset to write image to
+        /// \param isLz77 Should image be LZ77-compressed?
+        /// \returns false if image could not be compressed.
+        ///
+        ///////////////////////////////////////////////////////////
+        bool write(const Rom &rom, UInt32 offset, Boolean isLz77);
+
+
+
+    protected:
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Converts the raw data to GBA index data.
+        ///
+        ///////////////////////////////////////////////////////////
+        void convertToGBA();
+
+
     private:
 
         ///////////////////////////////////////////////////////////
@@ -176,6 +204,8 @@ namespace qboy
         Int32               m_DataSize;
         Int32               m_Width;
         Int32               m_Height;
+        Boolean             m_Is4Bpp;
+        QByteArray          m_Buffer;
         QString             m_LastError;
     };
 }
