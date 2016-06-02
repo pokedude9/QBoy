@@ -28,7 +28,7 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Rom.hpp>
+#include <QBoy/Core/Rom.hpp>
 
 
 namespace qboy

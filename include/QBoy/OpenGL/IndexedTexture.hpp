@@ -28,8 +28,8 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Config.hpp>
-#include <Graphics/Color.hpp>
+#include <QBoy/Config.hpp>
+#include <QBoy/Graphics/Color.hpp>
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
 #include <QOpenGLVertexArrayObject>

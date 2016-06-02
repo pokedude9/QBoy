@@ -24,9 +24,9 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Lz77.hpp>
-#include <Graphics/Palette.hpp>
-#include <Graphics/PaletteErrors.hpp>
+#include <QBoy/Core/Lz77.hpp>
+#include <QBoy/Graphics/Palette.hpp>
+#include <QBoy/Graphics/PaletteErrors.hpp>
 
 
 namespace qboy

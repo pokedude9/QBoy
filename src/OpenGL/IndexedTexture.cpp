@@ -24,8 +24,8 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <OpenGL/GLErrors.hpp>
-#include <OpenGL/IndexedTexture.hpp>
+#include <QBoy/OpenGL/GLErrors.hpp>
+#include <QBoy/OpenGL/IndexedTexture.hpp>
 
 
 namespace qboy

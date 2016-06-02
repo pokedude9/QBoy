@@ -33,20 +33,20 @@ INCLUDEPATH += include
 # Header Files
 #
 HEADERS += \
-    include/Core/Rom.hpp \
-    include/Config.hpp \
-    include/Core/RomInfo.hpp \
-    include/Core/RomErrors.hpp \
-    include/Text/String.hpp \
-    include/Text/Tables.hpp \
-    include/Core/Lz77.hpp \
-    include/Graphics/Palette.hpp \
-    include/Graphics/Color.hpp \
-    include/Graphics/PaletteErrors.hpp \
-    include/Graphics/Image.hpp \
-    include/OpenGL/IndexedTexture.hpp \
-    include/OpenGL/GLErrors.hpp \
-    include/Graphics/ImageErrors.hpp
+    include/QBoy/Core/Rom.hpp \
+    include/QBoy/Config.hpp \
+    include/QBoy/Core/RomInfo.hpp \
+    include/QBoy/Core/RomErrors.hpp \
+    include/QBoy/Text/String.hpp \
+    include/QBoy/Text/Tables.hpp \
+    include/QBoy/Core/Lz77.hpp \
+    include/QBoy/Graphics/Palette.hpp \
+    include/QBoy/Graphics/Color.hpp \
+    include/QBoy/Graphics/PaletteErrors.hpp \
+    include/QBoy/Graphics/Image.hpp \
+    include/QBoy/OpenGL/IndexedTexture.hpp \
+    include/QBoy/OpenGL/GLErrors.hpp \
+    include/QBoy/Graphics/ImageErrors.hpp
 
 #
 # Source Files

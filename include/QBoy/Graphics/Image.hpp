@@ -28,8 +28,8 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Graphics/Palette.hpp>
-#include <OpenGL/IndexedTexture.hpp>
+#include <QBoy/Graphics/Palette.hpp>
+#include <QBoy/OpenGL/IndexedTexture.hpp>
 
 
 namespace qboy
@@ -180,7 +180,7 @@ namespace qboy
         /// \returns false if image could not be compressed.
         ///
         ///////////////////////////////////////////////////////////
-        bool write(const Rom &rom, UInt32 offset, Boolean isLz77);
+        bool write(Rom &rom, UInt32 offset, Boolean isLz77);
 
 
 

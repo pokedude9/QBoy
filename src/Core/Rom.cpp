@@ -24,8 +24,8 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Rom.hpp>
-#include <Core/RomErrors.hpp>
+#include <QBoy/Core/Rom.hpp>
+#include <QBoy/Core/RomErrors.hpp>
 #include <QFile>
 #include <cstring>
 

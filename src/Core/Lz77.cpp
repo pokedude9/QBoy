@@ -24,7 +24,7 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Lz77.hpp>
+#include <QBoy/Core/Lz77.hpp>
 #include <QList>
 
 
@@ -88,7 +88,7 @@ namespace qboy
     }
 
     ///////////////////////////////////////////////////////////
-    int *attempt_encode(Int8 *ptr, int pos, int len) // always 2 entries
+    int *attempt_encode(const Int8 *ptr, int pos, int len) // always 2 entries
     {
         // Checks whether the following data can be encoded
         if (pos >= len)
@@ -160,7 +160,7 @@ namespace qboy
                 else if (row[0] >= 0)
                 {
                     // Can not be encoded; raw data
-                    block.append(array[position++]);
+                    block.append(raw.at(position++));
                 }
                 else
                 {
@@ -175,7 +175,7 @@ namespace qboy
 
         // Aligns the Lz77 data length to four
         while (encoded.size() % 4 != 0)
-            encoded.append(0);
+            encoded.append((char)0);
 
         return encoded;
     }

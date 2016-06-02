@@ -28,8 +28,8 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Rom.hpp>
-#include <Graphics/Color.hpp>
+#include <QBoy/Core/Rom.hpp>
+#include <QBoy/Graphics/Color.hpp>
 #include <QVector>
 
 

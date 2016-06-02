@@ -24,7 +24,7 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <OpenGL/GLErrors.hpp>
+#include <QBoy/OpenGL/GLErrors.hpp>
 #include <QOpenGLFunctions>
 #include <iostream>
 

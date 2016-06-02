@@ -28,7 +28,7 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Config.hpp>
+#include <QBoy/Config.hpp>
 #include <QOpenGLFunctions>
 
 

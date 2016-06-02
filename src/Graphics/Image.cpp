@@ -24,9 +24,9 @@
 // Include files
 //
 ///////////////////////////////////////////////////////////
-#include <Core/Lz77.hpp>
-#include <Graphics/Image.hpp>
-#include <Graphics/ImageErrors.hpp>
+#include <QBoy/Core/Lz77.hpp>
+#include <QBoy/Graphics/Image.hpp>
+#include <QBoy/Graphics/ImageErrors.hpp>
 
 
 namespace qboy
@@ -233,7 +233,7 @@ namespace qboy
     }
 
     ///////////////////////////////////////////////////////////
-    bool Image::write(const Rom &rom, UInt32 offset, Boolean isLz77)
+    bool Image::write(Rom &rom, UInt32 offset, Boolean isLz77)
     {
         // Converts the image to GBA data, if not already
         if (m_Buffer.isNull() || m_Buffer.isEmpty())
@@ -274,7 +274,7 @@ namespace qboy
         // Combines two consecutive indices into one byte
         for (int y = 0; y < m_Height-7; y+=8)
         {
-            for (int x = 0; x < width-7; x+=8)
+            for (int x = 0; x < m_Width-7; x+=8)
             {
                 for (int y2 = 0; y2 < 8; y2++)
                 {
