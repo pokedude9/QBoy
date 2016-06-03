@@ -240,8 +240,11 @@ namespace qboy
         Boolean         m_IsLoaded;
         Boolean         m_IsExpanded;
     };
+}
 
 
+namespace
+{
     ///////////////////////////////////////////////////////////
     /// \brief Defines common value types within the rom.
     ///
