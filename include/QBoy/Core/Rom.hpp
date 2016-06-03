@@ -230,6 +230,15 @@ namespace qboy
         ///////////////////////////////////////////////////////////
         bool canWrite(Int32 byteCount) const;
 
+        ///////////////////////////////////////////////////////////
+        /// \brief Retrieves the offset of the latest pointer.
+        ///
+        /// Returns the offset from which was read a pointer
+        /// recently.
+        ///
+        ///////////////////////////////////////////////////////////
+        UInt32 redirected() const;
+
 
         ///////////////////////////////////////////////////////////
         /// \brief Reads one byte at the current position.
@@ -478,6 +487,7 @@ namespace qboy
         UInt8                  *m_Array;
         UInt32                  m_Length;
         mutable UInt32          m_Offset;
+        mutable UInt32          m_Redirected;
         QString                 m_Error;
     };
 }

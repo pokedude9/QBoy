@@ -248,6 +248,8 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     UInt32 Rom::readPointer() const
     {
+        m_Redirected = m_Offset;
+
         // If a NULL pointer is detected, does not substract
         UInt32 pointer = readWord();
         if (pointer == 0x00000000)
