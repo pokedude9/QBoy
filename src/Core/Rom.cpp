@@ -212,6 +212,12 @@ namespace qboy
         return canRead(byteCount);
     }
 
+    ///////////////////////////////////////////////////////////
+    UInt32 Rom::redirected() const
+    {
+        return m_Redirected;
+    }
+
 
     ///////////////////////////////////////////////////////////
     // Member read/write functions
