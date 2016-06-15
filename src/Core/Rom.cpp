@@ -229,7 +229,7 @@ namespace qboy
     }
 
     ///////////////////////////////////////////////////////////
-    void Rom::clearCache()
+    void Rom::clearCache() const
     {
         m_Redirected.clear();
     }

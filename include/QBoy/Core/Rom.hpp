@@ -243,7 +243,7 @@ namespace qboy
         /// \brief Clears the REDIRECTED cache.
         ///
         ///////////////////////////////////////////////////////////
-        void clearCache();
+        void clearCache() const;
 
 
         ///////////////////////////////////////////////////////////
