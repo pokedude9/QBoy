@@ -239,6 +239,12 @@ namespace qboy
         ///////////////////////////////////////////////////////////
         UInt32 redirected() const;
 
+        ///////////////////////////////////////////////////////////
+        /// \brief Clears the REDIRECTED cache.
+        ///
+        ///////////////////////////////////////////////////////////
+        void clearCache();
+
 
         ///////////////////////////////////////////////////////////
         /// \brief Reads one byte at the current position.
@@ -284,6 +290,13 @@ namespace qboy
         ///
         ///////////////////////////////////////////////////////////
         UInt32 readPointer() const;
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Reads one pointer and stores the current offset.
+        /// \returns the offset of the pointer.
+        ///
+        ///////////////////////////////////////////////////////////
+        UInt32 readPointerRef() const;
 
         ///////////////////////////////////////////////////////////
         /// \brief Reads the specified amount of bytes.
@@ -487,7 +500,7 @@ namespace qboy
         UInt8                  *m_Array;
         UInt32                  m_Length;
         mutable UInt32          m_Offset;
-        mutable UInt32          m_Redirected;
+        mutable QList<UInt32>   m_Redirected;
         QString                 m_Error;
     };
 }

@@ -215,7 +215,23 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     UInt32 Rom::redirected() const
     {
-        return m_Redirected;
+        // FIRST has the following purpose:
+        // No reversal is needed.
+        // Reading ptr1
+        // Reading ptr2
+        // Loading ptr1 instead of ptr2
+        // Loading ptr2 instead of ptr1
+        UInt32 temp = m_Redirected.first();
+        m_Redirected.removeFirst();
+
+        // Returns the topmost offset
+        return temp;
+    }
+
+    ///////////////////////////////////////////////////////////
+    void Rom::clearCache()
+    {
+        m_Redirected.clear();
     }
 
 
@@ -254,14 +270,19 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     UInt32 Rom::readPointer() const
     {
-        m_Redirected = m_Offset;
-
         // If a NULL pointer is detected, does not substract
         UInt32 pointer = readWord();
         if (pointer == 0x00000000)
             return pointer;
         else
             return (pointer - 0x08000000);
+    }
+
+    ///////////////////////////////////////////////////////////
+    UInt32 Rom::readPointerRef() const
+    {
+        m_Redirected.push_back(m_Offset);
+        return readPointer();
     }
 
     ///////////////////////////////////////////////////////////
