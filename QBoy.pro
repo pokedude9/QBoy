@@ -13,6 +13,7 @@ TARGET      = QBoy
 TEMPLATE    = lib
 CONFIG     += c++11
 DEFINES    += QBOY_LIBRARY
+QMAKE_LFLAGS += -static-libgcc -static-libstdc++
 
 #
 # QMake Settings, 2

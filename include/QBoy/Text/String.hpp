@@ -43,7 +43,7 @@ namespace qboy
     /// buffers or colors and also includes the japanese table.
     ///
     ///////////////////////////////////////////////////////////
-    class String {
+    class QBOY_API String {
     public:
 
         ///////////////////////////////////////////////////////////
