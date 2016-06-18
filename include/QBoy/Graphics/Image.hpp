@@ -124,6 +124,13 @@ namespace qboy
         const Palette *palette() const;
 
         ///////////////////////////////////////////////////////////
+        /// \brief Retrieves the size of the image in pixels.
+        /// \returns the pixel size of the image
+        ///
+        ///////////////////////////////////////////////////////////
+        QSize size() const;
+
+        ///////////////////////////////////////////////////////////
         /// \brief Retrieves the generated 8bpp OpenGL texture.
         ///
         /// This function should not be called if a palette has

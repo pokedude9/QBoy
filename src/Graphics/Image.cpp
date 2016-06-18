@@ -105,8 +105,8 @@ namespace qboy
                         for (int x2 = 0; x2 < 8; x2+=2)
                         {
                             UInt8 nibbles = data.at(pixelInc++);
-                            m_Data[(x+x2+1)+((y+y2)*m_Height)] = (Int8)((nibbles & 0xF0) >> 4);
-                            m_Data[(x+x2+0)+((y+y2)*m_Height)] = (Int8)((nibbles & 0x0F));
+                            m_Data[(x+x2+1)+((y+y2)*width)] = (Int8)((nibbles & 0xF0) >> 4);
+                            m_Data[(x+x2+0)+((y+y2)*width)] = (Int8)((nibbles & 0x0F));
                         }
         }
         else
@@ -171,9 +171,12 @@ namespace qboy
                     for (int y2 = 0; y2 < 8; y2++)
                         for (int x2 = 0; x2 < 8; x2+=2)
                         {
+                            if (pixelInc == data.size())
+                                goto end;
+
                             UInt8 nibbles = data.at(pixelInc++);
-                            m_Data[(x+x2+1)+((y+y2)*m_Height)] = (Int8)((nibbles & 0xF0) >> 4);
-                            m_Data[(x+x2+0)+((y+y2)*m_Height)] = (Int8)((nibbles & 0x0F));
+                            m_Data[(x+x2+1)+((y+y2)*width)] = (Int8)((nibbles & 0xF0) >> 4);
+                            m_Data[(x+x2+0)+((y+y2)*width)] = (Int8)((nibbles & 0x0F));
                         }
         }
         else
@@ -196,6 +199,7 @@ namespace qboy
             m_Width = width;
         }
 
+    end:
         m_Is4Bpp = is4bpp;
         return true;
     }
@@ -297,6 +301,12 @@ namespace qboy
     const QByteArray &Image::raw() const
     {
         return m_Data;
+    }
+
+    ///////////////////////////////////////////////////////////
+    QSize Image::size() const
+    {
+        return QSize(m_Width, m_Height);
     }
 
     ///////////////////////////////////////////////////////////

@@ -1,0 +1,12 @@
+INPUT(
+./release\RomInfo.o
+./release\Rom.o
+./release\Tables.o
+./release\String.o
+./release\Lz77.o
+./release\Palette.o
+./release\GLErrors.o
+./release\IndexedTexture.o
+./release\Image.o
+./release\qrc_QBoy.o
+);

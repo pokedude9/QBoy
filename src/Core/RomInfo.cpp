@@ -122,15 +122,15 @@ namespace qboy
 
         // Determines the game type
         m_IsFRLG =
-            code.startsWith("BPR") ||
-            code.startsWith("BPG");
+            code.right(4).startsWith("BPR") ||
+            code.right(4).startsWith("BPG");
 
         m_IsRS =
-            code.startsWith("AXV") ||
-            code.startsWith("AXP");
+            code.right(4).startsWith("AXV") ||
+            code.right(4).startsWith("AXP");
 
         m_IsEM =
-            code.startsWith("BPE");
+            code.right(4).startsWith("BPE");
     }
 
 

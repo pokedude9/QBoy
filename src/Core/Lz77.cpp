@@ -61,8 +61,11 @@ namespace qboy
                         return QByteArray(NULL);
 
                     // Compressed data which needs to be decoded
-                    for (int j = 0; j < count && position < length; j++)
+                    for (int j = 0; j < count; j++)
                     {
+                        if (position >= length)
+                            break;
+
                         decomp[position] = decomp.at((position-j)-depos+(j%depos));
                         position++;
                     }

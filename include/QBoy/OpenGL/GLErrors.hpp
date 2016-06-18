@@ -83,7 +83,7 @@ namespace qboy
 
 
     #   ifdef QT_DEBUG
-    #     define glCheck(expr) { expr; GLErrors::Current->glCheckError(__FILE__,__LINE__,#expr); }
+    #     define glCheck(expr) { expr; qboy::GLErrors::Current->glCheckError(__FILE__,__LINE__,#expr); }
     #   else
     #     define glCheck(expr) { expr; }
     #   endif

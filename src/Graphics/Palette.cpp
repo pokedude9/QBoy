@@ -135,16 +135,6 @@ namespace qboy
             m_DataGL.push_back({ red/255.0f, green/255.0f, blue/255.0f, 1.0f });        
         }
 
-        // Expands the palette to 256 colors, if not already
-        if (m_ColorCount == 16)
-        {
-            for (int i = 0; i < 240; i++)
-            {
-                m_Data.append({ 0, 0, 0, 0 });
-                m_DataGL.append({ 0, 0, 0, 0 });
-            }
-        }
-
         return true;
     }
 
@@ -206,16 +196,6 @@ namespace qboy
         // Converts to OpenGL data list
         foreach (Color color, raw)
             m_DataGL.push_back({ color.r/255.0f, color.g/255.0f, color.b/255.0f, 1.0f });
-
-        // Expands the palette to 256 colors, if not already
-        if (m_ColorCount == 16)
-        {
-            for (int i = 0; i < 240; i++)
-            {
-                m_Data.append({ 0, 0, 0, 0 });
-                m_DataGL.append({ 0, 0, 0, 0 });
-            }
-        }
 
         return true;
     }
