@@ -36,9 +36,6 @@ namespace qboy
     RomInfo::RomInfo()
         : m_Path(QString::null),
           m_Code(QString::null),
-          m_IsFRLG(false),
-          m_IsRS(false),
-          m_IsEM(false),
           m_IsValid(false),
           m_IsLoaded(false),
           m_IsExpanded(false)
@@ -73,25 +70,6 @@ namespace qboy
 
 
     ///////////////////////////////////////////////////////////
-    bool RomInfo::isFRLG() const
-    {
-        return m_IsFRLG;
-    }
-
-    ///////////////////////////////////////////////////////////
-    bool RomInfo::isRS() const
-    {
-        return m_IsRS;
-    }
-
-    ///////////////////////////////////////////////////////////
-    bool RomInfo::isEM() const
-    {
-        return m_IsEM;
-    }
-
-
-    ///////////////////////////////////////////////////////////
     bool RomInfo::isValid() const
     {
         return m_IsValid;
@@ -119,18 +97,6 @@ namespace qboy
     {
         Q_ASSERT(!code.isNull());
         m_Code = code;
-
-        // Determines the game type
-        m_IsFRLG =
-            code.right(4).startsWith("BPR") ||
-            code.right(4).startsWith("BPG");
-
-        m_IsRS =
-            code.right(4).startsWith("AXV") ||
-            code.right(4).startsWith("AXP");
-
-        m_IsEM =
-            code.right(4).startsWith("BPE");
     }
 
 

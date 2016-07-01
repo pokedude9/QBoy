@@ -38,8 +38,6 @@ HEADERS += \
     include/QBoy/Config.hpp \
     include/QBoy/Core/RomInfo.hpp \
     include/QBoy/Core/RomErrors.hpp \
-    include/QBoy/Text/String.hpp \
-    include/QBoy/Text/Tables.hpp \
     include/QBoy/Core/Lz77.hpp \
     include/QBoy/Graphics/Palette.hpp \
     include/QBoy/Graphics/Color.hpp \
@@ -55,8 +53,6 @@ HEADERS += \
 SOURCES += \
     src/Core/RomInfo.cpp \
     src/Core/Rom.cpp \
-    src/Text/Tables.cpp \
-    src/Text/String.cpp \
     src/Core/Lz77.cpp \
     src/Graphics/Palette.cpp \
     src/OpenGL/GLErrors.cpp \

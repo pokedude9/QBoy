@@ -36,7 +36,7 @@ namespace qboy
 {
     ///////////////////////////////////////////////////////////
     /// \author Pokedude
-    /// \date   30/04/2016
+    /// \date   4/30/2016
     /// \file   RomInfo.hpp
     /// \brief  Holds ROM header information and more.
     ///
@@ -44,9 +44,6 @@ namespace qboy
     /// const QString &path() const     [Ex: C:/Rom.gba]
     /// const QString &title() const    [Ex: POKEMON FIRE]
     /// const QString &version() const  [Ex: BPRE]
-    /// bool isFRLG() const
-    /// bool isRS() const
-    /// bool isEM() const
     /// bool isValid() const
     /// bool isLoaded() const
     /// bool isExpanded() const
@@ -108,43 +105,6 @@ namespace qboy
         ///
         ///////////////////////////////////////////////////////////
         const QString code() const;
-
-
-        ///////////////////////////////////////////////////////////
-        /// \brief Determines whether this rom is a FR or LG one.
-        ///
-        /// Specific to Pokémon games. It compares whether the
-        /// game version code (Ex: BPRE) starts with the sequence
-        /// "BPR" or "BPG".
-        ///
-        /// \returns true if the ROM is either FireRed or LeafGreen.
-        ///
-        ///////////////////////////////////////////////////////////
-        bool isFRLG() const;
-
-        ///////////////////////////////////////////////////////////
-        /// \brief Determines whether this rom is a R or S one.
-        ///
-        /// Specific to Pokémon games. It compares whether the
-        /// game version code (Ex: AXVE) starts with the sequence
-        /// "AXV" or "AXP".
-        ///
-        /// \returns true if the ROM is either Ruby or Sapphire.
-        ///
-        ///////////////////////////////////////////////////////////
-        bool isRS() const;
-
-        ///////////////////////////////////////////////////////////
-        /// \brief Determines whether this rom is an emerald one.
-        ///
-        /// Specific to Pokémon games. It compares whether the
-        /// game version code starts with the sequence "BPE".
-        ///
-        /// \returns true if the ROM is Emerald.
-        ///
-        ///////////////////////////////////////////////////////////
-        bool isEM() const;
-
 
         ///////////////////////////////////////////////////////////
         /// \brief Determines whether this rom is valid.
@@ -233,9 +193,6 @@ namespace qboy
         ///////////////////////////////////////////////////////////
         QString         m_Path;
         QString         m_Code;
-        Boolean         m_IsFRLG;
-        Boolean         m_IsRS;
-        Boolean         m_IsEM;
         Boolean         m_IsValid;
         Boolean         m_IsLoaded;
         Boolean         m_IsExpanded;
