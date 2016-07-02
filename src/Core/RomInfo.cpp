@@ -35,6 +35,7 @@ namespace qboy
     ///////////////////////////////////////////////////////////
     RomInfo::RomInfo()
         : m_Path(QString::null),
+          m_Name(QString::null),
           m_Code(QString::null),
           m_IsValid(false),
           m_IsLoaded(false),
@@ -50,6 +51,12 @@ namespace qboy
     const QString &RomInfo::path() const
     {
         return m_Path;
+    }
+
+    ///////////////////////////////////////////////////////////
+    const QString &RomInfo::name() const
+    {
+        return m_Name;
     }
 
     ///////////////////////////////////////////////////////////
@@ -90,6 +97,13 @@ namespace qboy
     {
         Q_ASSERT(!path.isNull());
         m_Path = path;
+    }
+
+    ///////////////////////////////////////////////////////////
+    void RomInfo::setName(const QString &name)
+    {
+        Q_ASSERT(!name.isNull());
+        m_Name = name;
     }
 
     ///////////////////////////////////////////////////////////

@@ -27,6 +27,7 @@
 #include <QBoy/Core/Rom.hpp>
 #include <QBoy/Core/RomErrors.hpp>
 #include <QFile>
+#include <QFileInfo>
 #include <cstring>
 
 
@@ -107,6 +108,7 @@ namespace qboy
         // Specifies some information about the rom
         m_Info.setExpanded(m_Reference.size() == 33554432);
         m_Info.setPath(path);
+        m_Info.setName(QFileInfo(file.fileName()).fileName());
         m_Info.setValid(true);
         m_Info.setLoaded(true);
 

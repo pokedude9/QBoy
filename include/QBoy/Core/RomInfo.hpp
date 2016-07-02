@@ -42,6 +42,7 @@ namespace qboy
     ///
     /// Public getters:
     /// const QString &path() const     [Ex: C:/Rom.gba]
+    /// const QString &name() const     [Ex: Rom.gba]
     /// const QString &title() const    [Ex: POKEMON FIRE]
     /// const QString &version() const  [Ex: BPRE]
     /// bool isValid() const
@@ -81,6 +82,18 @@ namespace qboy
         ///
         ///////////////////////////////////////////////////////////
         const QString &path() const;
+
+
+        ///////////////////////////////////////////////////////////
+        /// \brief Retrieves the file name of the ROM on the disk.
+        ///
+        /// The file name only includes the actual name of the
+        /// file, not the rest of the path.
+        ///
+        /// \returns the file name of the ROM file.
+        ///
+        ///////////////////////////////////////////////////////////
+        const QString &name() const;
 
         ///////////////////////////////////////////////////////////
         /// \brief Retrieves the game title of the rom.
@@ -152,6 +165,13 @@ namespace qboy
         void setPath(const QString &path);
 
         ///////////////////////////////////////////////////////////
+        /// \brief Specifies the file name of the ROM file.
+        /// \param path File name of the ROM
+        ///
+        ///////////////////////////////////////////////////////////
+        void setName(const QString &name);
+
+        ///////////////////////////////////////////////////////////
         /// \brief Specifies the full 16-digit header string.
         ///
         /// Members IsFRLG, IsRS and IsEM will be automatically set
@@ -192,6 +212,7 @@ namespace qboy
         //
         ///////////////////////////////////////////////////////////
         QString         m_Path;
+        QString         m_Name;
         QString         m_Code;
         Boolean         m_IsValid;
         Boolean         m_IsLoaded;
