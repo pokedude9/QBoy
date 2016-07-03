@@ -95,6 +95,7 @@ namespace qboy
             m_Height = (int)(ceilf(ratio))*8;
             m_Width = width;
             m_DataSize = length;
+            m_Data.resize(m_Width*m_Height);
 
             // Converts the 4bpp data to 8bpp data. Extracts the two nibbles out
             // of one byte in each iteration and treats them as indices.
