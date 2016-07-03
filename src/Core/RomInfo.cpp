@@ -88,6 +88,12 @@ namespace qboy
         return m_IsLoaded;
     }
 
+    ///////////////////////////////////////////////////////////
+    bool RomInfo::isExpanded() const
+    {
+        return m_IsExpanded;
+    }
+
 
     ///////////////////////////////////////////////////////////
     // Public setters
