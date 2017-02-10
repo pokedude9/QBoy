@@ -41,9 +41,9 @@ namespace qboy
     ///
     ///////////////////////////////////////////////////////////
 
-    #define ROM_ERROR_FNF       "The following rom file was not found: \"%file%\"."
-    #define ROM_ERROR_IO        "The following rom file is already in use: \"%file%\"."
-    #define ROM_ERROR_SIZE      "The rom does not have the correct size of 16MB or 32MB."
+    #define ROM_ERROR_FNF       "The ROM file was not found: \"%file%\"."
+    #define ROM_ERROR_IO        "The ROM file is already in use: \"%file%\"."
+    #define ROM_ERROR_SIZE      "The ROM file is not a proper size (should be either 16MB or 32MB)."
 
 
     ///////////////////////////////////////////////////////////
