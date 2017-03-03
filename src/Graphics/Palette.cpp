@@ -27,7 +27,7 @@
 #include <QBoy/Core/Lz77.hpp>
 #include <QBoy/Graphics/Palette.hpp>
 #include <QBoy/Graphics/PaletteErrors.hpp>
-
+#include <cmath>
 
 namespace qboy
 {
