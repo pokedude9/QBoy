@@ -27,7 +27,7 @@
 #include <QBoy/Core/Lz77.hpp>
 #include <QBoy/Graphics/Image.hpp>
 #include <QBoy/Graphics/ImageErrors.hpp>
-
+#include <cmath>
 
 namespace qboy
 {
